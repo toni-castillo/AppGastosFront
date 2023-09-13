@@ -1,0 +1,175 @@
+<div class="main-container">
+    <mat-card class="card">
+        <form [formGroup]="formulario" (ngSubmit)="getDataForm()">
+            <mat-card-title class="mb-4">Viaje</mat-card-title>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <!-- DEPARTAMENTO - SELECT -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Área</mat-label>
+                        <mat-select formControlName="departamento">
+                            <mat-option *ngFor="let departamento of arrDepartamentos" [value]="departamento">
+                                {{departamento}}
+                            </mat-option>
+                        </mat-select>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('departamento', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- CODIGO DE PROYECTO -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Codigo de proyecto</mat-label>
+                        <input matInput formControlName="codigo">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('codigo', 'required')">El campo es
+                            obligatorio</small>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('codigo', 'maxlength')">El campo no
+                            puede
+                            tener
+                            más de
+                            45 caracteres</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12">
+                    <!-- MOTIVO DEL GASTO  -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Motivo del gasto</mat-label>
+                        <textarea matInput formControlName="motivoGasto"></textarea>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('motivoGasto', 'required')">El campo es
+                            obligatorio</small>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('motivoGasto', 'maxlength')">El campo no
+                            puede
+                            tener
+                            más de
+                            400 caracteres</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- FECHA DE SALIDA - FECHA DE REGRESO - DATE  -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha del viaje</mat-label>
+                        <mat-date-range-input [rangePicker]="picker4" [min]="minDate">
+                            <input matStartDate placeholder="DD/MM/AAAA – DD/MM/AAAA" formControlName="fechaSalida">
+                            <input matEndDate formControlName="fechaRegreso">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker4></mat-date-range-picker>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('fechaSalida', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- PERNOCTA - BOOLEANO -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Pernocta</mat-label>
+                        <mat-select formControlName="pernocta">
+                            <mat-option [value]="true">Sí</mat-option>
+                            <mat-option [value]="false">No</mat-option>
+                        </mat-select>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('pernocta', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12">
+                    <!-- HOTEL DE PREFERENCIA - AÑADE ENLACE -->
+                    <mat-form-field appearance="fill" *ngIf="formulario.value.pernocta === true">
+                        <mat-label>Hotel de referencia</mat-label>
+                        <input matInput placeholder=" Inserta enlace de hotel" formControlName="hotel">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- ORIGEN DEL VIAJE -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Origen del viaje</mat-label>
+                        <input matInput formControlName="origen">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('origen', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- DESTINO DEL VIAJE -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Destino del viaje</mat-label>
+                        <input matInput formControlName="destino">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('destino', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- MEDIO DE TRANSPORTE -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Medio de transporte</mat-label>
+                        <mat-select formControlName="transporte">
+                            <mat-option [value]="'tren'">Tren</mat-option>
+                            <mat-option [value]="'avion'">Avión</mat-option>
+                            <mat-option [value]="'autobus'">Autobús</mat-option>
+                            <mat-option [value]="'coche'">Coche</mat-option>
+                        </mat-select>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('transporte', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12" *ngIf="formulario.value.transporte === 'coche'">
+                    <!-- KM EN COCHE (A 0.19 €/KM)-->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Kilómetros ida y vuelta</mat-label>
+                        <input matInput (input)="calculaConsumo($event)" formControlName="km" type="number">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('km', 'required')">El campo es
+                            obligatorio</small>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('km', 'min')">El importe no puede ser un
+                            número negativo</small>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-sm-12" *ngIf="formulario.value.transporte === 'coche'">
+                    <mat-form-field appearance="fill">
+                        <mat-label>El importe total de gasolina por km (0.19 €/km) es:</mat-label>
+                        <input matInput readonly value="{{consumo}} € (cálculo automático)">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- IMPORTE APROXIMADO -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Importe (puede ser aproximado)</mat-label>
+                        <input matInput formControlName="importe" type="number">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('importe', 'required')">El campo es
+                            obligatorio</small>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('importe', 'min')">El importe no puede
+                            ser
+                            un
+                            número negativo</small>
+                    </mat-form-field>
+                </div>
+
+
+
+            </div>
+
+            <!-- BOTÓN -->
+            <mat-card-actions>
+                <button mat-raised-button *ngIf="isNewForm" type="submit" [disabled]="!formulario.valid">ENVIAR
+                </button>
+            </mat-card-actions>
+
+            <!-- BOTÓN ACTUALIZAR-->
+            <mat-card-actions>
+                <button mat-raised-button *ngIf="!isNewForm" [disabled]="!formulario.valid" [routerLink]="['/empleado']" (click)="editarGasto() ">ACTUALIZAR GASTO</button>
+            </mat-card-actions>
+        </form>
+
+        <div *ngIf="err" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <div>
+                <strong> {{mensaje}}</strong>
+            </div>
+        </div>
+    </mat-card>
+</div>

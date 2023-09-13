@@ -1,0 +1,156 @@
+.container-md {
+    display: flex;
+    justify-content: center;
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    background-color: #020726;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.header-container {
+    display: flex;
+    background-color: #d6d6d6;
+    width: 100%;
+    justify-content: center;
+    padding: 15px;
+}
+
+
+h1 {
+    margin: 0%;
+    font-weight: 500;
+    color: #020726;
+}
+
+.item-list {
+    width: 90%;
+    margin-top: 20px;
+}
+
+.item-list hr {
+    color: #ffffff;
+    margin: 0;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 9px;
+}
+
+.bottom-line {
+    border-bottom: 1px solid rgba(162, 162, 162, 0.945);
+}
+
+.top-line {
+    border-top: 1px solid rgba(162, 162, 162, 0.945);
+}
+
+.prop-name {
+    width: 30%;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.prop-value {
+    width: 70%;
+    color: #d6d6d6;
+    margin-left: 10%;
+    word-wrap: break-word;
+}
+
+.prop-value a {
+    color: #789dca;
+    word-break: break-word;
+}
+
+
+.botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.botonesAccion {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.editar {
+    background-color: #ffffff;
+    color: #020726;
+    margin: 20px;
+}
+
+
+.atras {
+    background-color: #dadd02;
+    color: #020726;
+    margin: 20px;
+}
+
+.status-Aceptado {
+    color: #77dd77;
+    font-weight: 600;
+
+}
+
+.status-Rechazado {
+    color: #ff6961;
+    font-weight: 600;
+}
+
+.status-Pendiente {
+    color: #fdfd96;
+    font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    .main-container {
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .prop-name {
+        padding-right: 10px;
+        width: 35%;
+    }
+
+    .prop-value {
+        width: 65%;
+
+    }
+}
+
+@media (max-width: 576) {
+    .main-container {
+        width: 100%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .prop-name {
+        padding-right: 10px;
+        width: 35%;
+    }
+
+    .prop-value {
+        width: 65%;
+
+    }
+}

@@ -1,0 +1,168 @@
+.container-md {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 70%;
+    height: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.lead {
+    text-align: center;
+}
+
+.titulo-select {
+    font-weight: 400;
+}
+
+.titulo-tabla {
+    font-weight: 400;
+}
+
+.expenses-selector {
+    width: 50%;
+    font-size: 18px;
+}
+
+.item,
+.titulos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #020726;
+    color: #ffffff;
+    width: 100%;
+    margin: 1px;
+    font-size: 15px;
+    padding: 20px;
+}
+
+
+.titulos {
+    background-color: #d6d6d6;
+    color: #020726;
+    font-weight: bold;
+}
+
+.item-info,
+.item-info-end,
+.item-titulo {
+    width: 18%;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.item-info-end {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0%;
+}
+
+.sin-gastos {
+    justify-content: center;
+}
+
+button {
+    background-color: #dadd02;
+    color: #020726;
+    margin: 2px;
+    padding: 1px;
+}
+
+.status-Aceptado {
+    color: #77dd77;
+    font-weight: 600;
+
+}
+
+.status-Rechazado {
+    color: #ff6961;
+    font-weight: 600;
+}
+
+.status-Pendiente {
+    color: #fdfd96;
+    font-weight: 500;
+}
+
+
+@media (max-width: 992px) {
+    .main-container {
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .first-container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .item-titulo,
+    .item-info,
+    .item-info-end {
+        width: 30%;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .item,
+    .titulos {
+        padding: 12px;
+    }
+
+    .expenses-selector {
+        width: 70%;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+        width: 100%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .first-container {
+        margin-top: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .ocultable {
+        display: none;
+    }
+
+    .item-titulo,
+    .item-info,
+    .item-info-end {
+        width: 30%;
+    }
+
+    .item,
+    .titulos {
+        padding: 12px;
+    }
+
+    .expenses-selector {
+        width: 100%;
+    }
+}

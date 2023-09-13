@@ -1,0 +1,47 @@
+<div class="container-md">
+
+    <section class="first-container">
+        <p class="h2 titulo-select">¡Hola!</p>
+        <p class="lead">Estos son los gastos que tienes por validar:</p>
+    </section>
+
+    <section class="main-container">
+        <div class="titulos">
+            <div class="item-titulo">Fecha</div>
+            <div class="item-titulo ocultable2">Empleado</div>
+            <div class="item-titulo">Tipo de gasto</div>
+            <div class="item-titulo ocultable1">Importe</div>
+            <div class="item-titulo ocultable2">Estado</div>
+            <div class="item-titulo"></div>
+        </div>
+        <div class="item" *ngFor="let formulario of arrFormularios">
+            <div class="item-info">
+                {{formulario.date_request.slice(0, 10)}}
+            </div>
+            <div class="item-info ocultable2">
+                {{formulario.name[0].toUpperCase() + formulario.name.slice(1)}}
+                {{formulario.surname[0].toUpperCase() + formulario.surname.slice(1)}}
+            </div>
+            <div class="item-info">
+                {{formulario.general_type[0].toUpperCase() + formulario.general_type.slice(1)}}
+            </div>
+
+            <div class="item-info ocultable1">
+                {{formulario.amount}} €
+            </div>
+
+            <div class="item-info ocultable2 status-{{formulario?.is_accepted}}">
+                {{formulario.is_accepted}}
+            </div>
+
+            <div class="item-info-end">
+                <button mat-raised-button [routerLink]="['/validador/', formulario.id]">Ver más</button>
+            </div>
+        </div>
+        <div class="item sin-gastos" *ngIf="arrFormularios.length === 0">
+            <div>
+                NO HAY GASTOS PARA MOSTRAR
+            </div>
+        </div>
+    </section>
+</div>

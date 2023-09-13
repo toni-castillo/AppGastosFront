@@ -1,0 +1,26 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark" *ngIf="isLogged">
+    <div class="container-md">
+      <a class="navbar-brand" [routerLink]="['/empleado']" *ngIf="role=='employee'"><img src="../../../assets/images/Recurso 5@2x.png" alt="Logo de Bravent" height="50" class="d-inline-block align-text-center me-3"></a>
+      <a class="navbar-brand" [routerLink]="['/validador']" *ngIf="role=='validator'"><img src="../../../assets/images/Recurso 5@2x.png" alt="Logo de Bravent" height="50" class="d-inline-block align-text-center me-3"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <div class="user-info nav-item dropdown ms-auto" *ngIf="isLogged">
+          <div class="me-1">
+            <i class="bi bi-person-circle bi-x4"></i>
+          </div>
+          <a class="name nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+            {{fullName}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-lg-end">
+            <li><a class="dropdown-item" (click)="onClickLogout()">Cerrar sesión</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,100 @@
+<div class="main-container">
+  <mat-card class="card">
+    <form [formGroup]="form" (ngSubmit)="getDataForm()" enctype="multipart/form-data">
+      <mat-card-title class="mb-4">Otros gastos</mat-card-title>
+
+      <div class="row">
+        <!-- Área -->
+        <div class="form-group col-lg-6 col-sm-12">
+          <mat-form-field appearance="fill">
+            <mat-label>Área</mat-label>
+            <mat-select formControlName="department">
+              <mat-option *ngFor="let departamento of arrDepartamentos" [value]="departamento">
+                {{departamento}}
+              </mat-option>
+            </mat-select>
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('department', 'required')">El campo es
+              obligatorio</small>
+          </mat-form-field>
+        </div>
+        <!-- Código del proyecto -->
+        <div class="form-group col-lg-6 col-sm-12">
+          <mat-form-field appearance="fill">
+            <mat-label>Código del proyecto asociado</mat-label>
+            <input matInput formControlName="project_code" type="text">
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('project_code', 'required')">El campo es
+              obligatorio</small>
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('project_code', 'maxlength')">El campo no puede
+              tener más de 45 caracteres</small>
+          </mat-form-field>
+        </div>
+        <!-- Fecha del gasto -->
+        <div class="form-group col-lg-6 col-sm-12">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha del gasto</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date_expense">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('date_expense', 'required')">El campo es
+              obligatorio</small>
+            <br>
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('date_expense', 'dateValidator')">{{
+              form.get('date_expense')?.errors?.['dateValidator'] }}</small>
+          </mat-form-field>
+        </div>
+        <!-- Tipo de gasto (con justificante, nombre empresa, dieta...) -->
+        <div class="form-group col-lg-6 col-sm-12">
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo de gasto</mat-label>
+            <mat-select formControlName="type">
+              <mat-option value="con justificante">Con justificante</mat-option>
+              <mat-option value="dieta">Dieta</mat-option>
+              <mat-option value="nombre empresa">Nombre de empresa</mat-option>
+              <mat-option value="otro">Otro</mat-option>
+            </mat-select>
+            <mat-hint>Añade junto al motivo del gasto, si procede, detalles sobre el tipo indicado</mat-hint>
+            <small class="p-1 m-1 text-danger" *ngIf="checkControl('type', 'required')">El campo es obligatorio</small>
+          </mat-form-field>
+        </div>
+        <!-- Motivo del gasto -->
+        <div class="form-group col-12 pt-4">
+          <mat-form-field appearance="fill">
+            <mat-label>Motivo del gasto</mat-label>
+            <textarea matInput formControlName="reason"></textarea>
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('reason', 'required')">El campo es
+              obligatorio</small>
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('reason', 'maxlength')">El campo no puede tener más
+              de 400 caracteres</small>
+          </mat-form-field>
+        </div>
+        <!-- Importe -->
+        <div class="form-group col-lg-6 col-sm-12">
+          <mat-form-field appearance="fill">
+            <mat-label>Importe</mat-label>
+            <input matInput formControlName="amount" type="number">
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('amount', 'required')">El campo es
+              obligatorio</small>
+            <small class="p-1 my-1 text-danger" *ngIf="checkControl('amount', 'min')">El importe no puede ser un número
+              negativo</small>
+          </mat-form-field>
+        </div>
+        <!-- Subir justificante de pago -->
+        <div class="form-group col-lg-6 col-sm-12">
+          <div class="mb-4">
+            <label for="formFile" class="form-label">Adjuntar justificante de pago</label>
+            <input class="form-control" type="file" id="formFile" name="attached" (change)="onChange($event)" enctype="multipart/form-data">
+          </div>
+        </div>
+        <!-- Botón enviar -->
+        <div class="col-12">
+          <mat-card-actions>
+            <button mat-raised-button type="submit" *ngIf="isNewForm" [disabled]="!form.valid">ENVIAR</button>
+          </mat-card-actions>
+          <mat-card-actions>
+            <button mat-raised-button *ngIf="!isNewForm" [disabled]="!form.valid" [routerLink]="['/empleado']" (click)="editarGasto() ">ACTUALIZAR GASTO</button>
+          </mat-card-actions>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

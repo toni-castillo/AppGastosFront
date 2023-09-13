@@ -1,0 +1,55 @@
+<div class="container-md">
+    <section class="first-container">
+
+        <p class="h2 titulo-select">¡Hola!</p>
+        <p class="lead">Si quieres imputar un nuevo gasto, selecciona su tipo:</p>
+
+        <mat-form-field appearance="fill" class="expenses-selector mt-2">
+            <mat-label>Tipo de gasto</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let type of arrTypes" [value]="type.value" (click)="onClickGoToForm(type.value)">
+                    {{type.key}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </section>
+    <section class="main-container">
+        <p class="h4 mb-3 titulo-tabla">Gastos ya imputados</p>
+        <div class="titulos">
+            <div class="item-titulo">Fecha</div>
+            <!-- <div class="item-titulo ocultable">Empleado</div> -->
+            <div class="item-titulo">Tipo de gasto</div>
+            <div class="item-titulo ocultable">Importe</div>
+            <div class="item-titulo ocultable">Estado</div>
+            <div class="item-titulo"></div>
+        </div>
+        <div class="item" *ngFor="let formulario of arrFormularios">
+            <div class="item-info">
+                {{formulario.date_request.slice(0, 10)}}
+            </div>
+            <!-- <div class="item-info ocultable">
+                {{formulario.name[0].toUpperCase() + formulario.name.slice(1)}}
+            </div> -->
+            <div class="item-info">
+                {{formulario.general_type[0].toUpperCase() + formulario.general_type.slice(1)}}
+            </div>
+
+            <div class="item-info ocultable">
+                {{formulario.amount}} €
+            </div>
+
+            <div class="item-info ocultable status-{{formulario.is_accepted}}">
+                {{formulario.is_accepted}}
+            </div>
+
+            <div class="item-info-end">
+                <button mat-raised-button [routerLink]="['/empleado/', formulario.id]">Ver más</button>
+            </div>
+        </div>
+        <div class="item sin-gastos" *ngIf="arrFormularios.length === 0">
+            <div>
+                NO HAY GASTOS PARA MOSTRAR
+            </div>
+        </div>
+    </section>

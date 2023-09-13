@@ -1,0 +1,37 @@
+<div class="main-container">
+    <mat-card class="card">
+        <div class="image-container">
+            <img class="image" src="../../../assets/images/LOGO_2021.png" alt="Logo">
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="getDataForm()">
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email" class="mt-1">
+                <small class="p-1 my-1 text-danger" *ngIf="checkControl('email', 'required')">El campo es
+                    obligatorio</small>
+                <small class="p-1 my-1 text-danger" *ngIf="checkControl('email', 'pattern')">Tiene que ser un email
+                    correcto</small>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <small class="p-1 my-1 text-danger" *ngIf="checkControl('password', 'required')">El campo es
+                    obligatorio</small>
+                <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button mat-raised-button type="submit" [disabled]="!formulario.valid">ENTRAR</button>
+            </mat-card-actions>
+        </form>
+
+        <div *ngIf="err" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <div>
+                <strong>{{mensaje}}</strong>
+            </div>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,153 @@
+<div class="container-md">
+    <div class="main-container">
+        <div class="header-container">
+            <h1>Detalle del gasto</h1>
+        </div>
+        <div class="item-list">
+            <div class="item bottom-line" *ngIf="expense?.date_request !== null ">
+                <div class="prop-name">Fecha de solicitud:</div>
+                <div class="prop-value">{{expense?.date_request?.slice(0, 10)}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.name !== null">
+                <div class="prop-name">Nombre:</div>
+                <div class="prop-value">{{expense?.name}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.project_code !== null ">
+                <div class="prop-name">Código de proyecto:</div>
+                <div class="prop-value">{{expense?.project_code}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.general_type !== null ">
+                <div class="prop-name">Tipo de gasto:</div>
+                <div class="prop-value">{{expense?.general_type}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.reason!== null ">
+                <div class="prop-name">Motivo del gasto:</div>
+                <div class="prop-value">{{expense?.reason}}</div>
+
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.date_expense !== null ">
+                <div class="prop-name">Fecha del gasto:</div>
+                <div class="prop-value">{{expense?.date_expense?.slice(0, 10)}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.type !== null ">
+                <div class="prop-name">Tipo:</div>
+                <div class="prop-value">{{expense?.type}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.attached !== null ">
+                <div class="prop-name">Adjunto:</div>
+                <div class="prop-value">
+                    <a href="http://localhost:3000/uploads/{{expense?.attached}}" target="_blank">{{expense?.attached}}</a>
+                </div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.departure_date !== null ">
+                <div class="prop-name">Fecha de salida:</div>
+                <div class="prop-value">{{expense?.departure_date?.slice(0, 10)}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.return_date !== null ">
+                <div class="prop-name">Fecha de regreso:</div>
+                <div class="prop-value">{{expense?.return_date?.slice(0, 10)}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.overnight !== null ">
+                <div class="prop-name">Pernocta:</div>
+                <div class="prop-value">Sí</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.hotel_link !== null ">
+                <div class="prop-name">Hotel de referencia:</div>
+                <div class="prop-value">{{expense?.hotel_link}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.trip_origin">
+                <div class="prop-name">Origen del viaje:</div>
+                <div class="prop-value">{{expense?.trip_origin}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.trip_destination!== null ">
+                <div class="prop-name">Destino del viaje:</div>
+                <div class="prop-value">{{expense?.trip_destination}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.means_transport !== null ">
+                <div class="prop-name">Medio de transporte:</div>
+                <div class="prop-value">{{expense?.means_transport}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.if_car_km !== null ">
+                <div class="prop-name">Km ida y vuelta:</div>
+                <div class="prop-value">{{expense?.if_car_km}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.product_link !== null ">
+                <div class="prop-name">Enlace del producto:</div>
+                <div class="prop-value">{{expense?.product_link}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.provider !== null ">
+                <div class="prop-name">Proveedor:</div>
+                <div class="prop-value">{{expense?.provider}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.units !== null ">
+                <div class="prop-name">Unidades:</div>
+                <div class="prop-value">{{expense?.units}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.requested_training !== null ">
+                <div class="prop-name">Formación solicitada:</div>
+                <div class="prop-value">{{expense?.requested_training}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.training_hours !== null ">
+                <div class="prop-name">Horas de formación:</div>
+                <div class="prop-value">{{expense?.training_hours}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.training_schedule !== null ">
+                <div class="prop-name">Horario de formación:</div>
+                <div class="prop-value">{{expense?.training_schedule}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.number_people !== null ">
+                <div class="prop-name">Cantidad de personas:</div>
+                <div class="prop-value">{{expense?.number_people}}</div>
+                <hr>
+            </div>
+            <div class="item bottom-line" *ngIf="expense?.amount !== null ">
+                <div class="prop-name">Importe aproximado:</div>
+                <div class="prop-value">{{expense?.amount}} €</div>
+                <hr>
+            </div>
+            <div class="item" *ngIf="expense?.is_accepted !== null ">
+                <div class="prop-name">Estado de la solicitud:</div>
+                <div class="prop-value status-{{expense?.is_accepted}}">{{expense?.is_accepted}}</div>
+                <hr>
+            </div>
+
+            <div class="item top-line" *ngIf="expense?.validator_note!== null && expense?.is_accepted === 'Rechazado'  ">
+                <div class="prop-name">Nota:</div>
+                <div class="prop-value">{{expense?.validator_note}}</div>
+            </div>
+        </div>
+
+        <div class="botones">
+            <div class="botonAccion">
+                <button mat-raised-button class="aceptar" (click)="aceptarGasto()">Aceptar</button>
+                <button mat-raised-button class="rechazar" (click)="rechazarGasto()">Rechazar</button>
+
+            </div>
+            <div class="back">
+                <button mat-raised-button class="atras" [routerLink]="['/validador']">Volver atrás</button>
+            </div>
+        </div>
+    </div>
+</div>

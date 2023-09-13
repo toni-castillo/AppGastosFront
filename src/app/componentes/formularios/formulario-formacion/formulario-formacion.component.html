@@ -1,0 +1,150 @@
+<div class="main-container">
+    <mat-card class="card">
+        <form [formGroup]="formulario" (ngSubmit)="getDataForm()">
+            <mat-card-title class="mb-4">Formación</mat-card-title>
+            <div class="row">
+                <!-- DEPARTAMENTO - SELECT -->
+                <div class="col-lg-6 col-sm-12">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Área</mat-label>
+                        <mat-select formControlName="departamento">
+                            <mat-option *ngFor="let departamento of arrDepartamentos" [value]="departamento">
+                                {{departamento}}
+                            </mat-option>
+                        </mat-select>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('departamento', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+                <!-- CODIGO DE PROYECTO -->
+                <div class="col-lg-6 col-sm-12">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Codigo de proyecto</mat-label>
+                        <input matInput formControlName="codigo">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('codigo', 'required')">El campo es
+                            obligatorio</small>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('codigo', 'maxlength')">El campo no
+                            puede
+                            tener
+                            más de
+                            45 caracteres</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12">
+                    <!-- MOTIVO DEL GASTO  -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Motivo del gasto</mat-label>
+                        <textarea matInput formControlName="motivoGasto"></textarea>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('motivoGasto', 'required')">El campo es
+                            obligatorio</small>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('motivoGasto', 'maxlength')">El campo no
+                            puede
+                            tener
+                            más de
+                            400 caracteres</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12">
+                    <!-- FORMACION SOLICITADA -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Formación solicitada</mat-label>
+                        <input matInput formControlName="formacionSolicitada">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('formacionSolicitada', 'required')">El
+                            campo
+                            es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- FECHA FORMACION  -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de la formación</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="fechaFormacion">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('fechaFormacion', 'required')">El campo
+                            es
+                            obligatorio</small>
+                        <br>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- PROVEEDOR -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Proveedor</mat-label>
+                        <input matInput formControlName="proveedor">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('proveedor', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <!-- HORAS FORMACION -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Horas de formación</mat-label>
+                        <input matInput formControlName="horasFormacion" type="number">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('horasFormacion', 'required')">El campo
+                            es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <!-- HORARIO FORMACION -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Horario de formación</mat-label>
+                        <input matInput formControlName="horarioFormacion">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('horarioFormacion', 'required')">El
+                            campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <!-- PERSONAS -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cantidad de personas</mat-label>
+                        <input matInput formControlName="personas">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('personas', 'required')">El campo es
+                            obligatorio</small>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <!-- IMPORTE APROXIMADO -->
+                    <mat-form-field appearance="fill" class="">
+                        <mat-label>Importe (puede ser aproximado)</mat-label>
+                        <input matInput formControlName="importe" type="number">
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('importe', 'required')">El campo es
+                            obligatorio</small>
+                        <small class="p-1 my-1 text-danger" *ngIf="checkControl('importe', 'min')">El importe no puede
+                            ser
+                            un
+                            número negativo</small>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- BOTÓN -->
+            <mat-card-actions>
+                <button mat-raised-button *ngIf="isNewForm" type="submit" [disabled]="!formulario.valid">ENVIAR
+                </button>
+            </mat-card-actions>
+
+            <!-- BOTÓN ACTUALIZAR-->
+            <mat-card-actions>
+                <button mat-raised-button *ngIf="!isNewForm" [disabled]="!formulario.valid"
+                    (click)="editarGasto() ">ACTUALIZAR GASTO</button>
+            </mat-card-actions>
+        </form>
+
+        <div *ngIf="err" class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+            <div>
+                <strong> {{mensaje}}</strong>
+            </div>
+        </div>
+    </mat-card>
+</div>

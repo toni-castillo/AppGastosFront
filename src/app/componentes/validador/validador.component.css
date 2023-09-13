@@ -1,0 +1,157 @@
+.container-md {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 70%;
+    height: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.lead {
+    text-align: center;
+}
+
+.item,
+.titulos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #020726;
+    color: #ffffff;
+    width: 100%;
+    margin: 1px;
+    font-size: 15px;
+    padding: 20px;
+}
+
+.sin-gastos {
+    justify-content: center;
+}
+
+
+.titulos {
+    background-color: #d6d6d6;
+    color: #020726;
+    font-weight: 600;
+}
+
+.item-info,
+.item-info-end,
+.item-titulo {
+    width: 18%;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.item-info-end {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0%;
+}
+
+button {
+    background-color: #dadd02;
+    color: #020726;
+    margin: 2px;
+    padding: 1px;
+}
+
+.status-Aceptado {
+    color: #77dd77;
+    font-weight: 600;
+
+}
+
+.status-Rechazado {
+    color: #ff6961;
+    font-weight: 600;
+}
+
+.status-Pendiente {
+    color: #fdfd96;
+    font-weight: 500;
+}
+
+
+@media (max-width: 992px) {
+    .main-container {
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .first-container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .ocultable1 {
+        display: none;
+    }
+
+    .item-titulo,
+    .item-info,
+    .item-info-end {
+        width: 30%;
+    }
+
+    .item,
+    .titulos {
+        padding: 12px;
+    }
+
+    .expenses-selector {
+        width: 70%;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+        width: 100%;
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .first-container {
+        margin-top: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .ocultable2 {
+        display: none;
+    }
+
+    .item-titulo,
+    .item-info,
+    .item-info-end {
+        width: 30%;
+    }
+
+    .item,
+    .titulos {
+        padding: 12px;
+    }
+
+    .expenses-selector {
+        width: 100%;
+    }
+}

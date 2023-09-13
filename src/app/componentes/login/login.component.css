@@ -1,0 +1,72 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #020726;
+
+}
+
+.card {
+    width: 40%;
+    color: #000000;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    border-radius: solid 1%;
+}
+
+form {
+    width: 100%;
+    margin: 40px 40px 0 40px;
+}
+
+mat-form-field {
+    display: block;
+    width: 100%;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+button {
+    background-color: #dadd02;
+    color: #020726;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    width: 70%;
+}
+
+@media (max-width: 1200px) {
+    .card {
+        width: 50%;
+    }
+}
+
+@media (max-width: 992px) {
+    .card {
+        width: 70%;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+        padding: 1rem;
+        margin: .75rem;
+        border-radius: solid 1%;
+    }
+}
